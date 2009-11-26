@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" version="-//W3C//DTD XHTML 1.1//EN" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>SPARQL complete</title>
+	
+	<script type="text/javascript" src="lib/jquery-1.3.2.js"></script>
+	<script type="text/javascript" src="lib/grammar.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var area = $('#area');
+		var suggest = $('#suggestion');
+		area.keydown(function(e) {
+			var suggs = parse(area.val());
+			if (suggs) {
+				suggest.val(suggs.join(" "));
+			} else {
+				suggest.val("You're going off piste");
+			}
+		});
+	});
+	</script>
+	<style type="text/css" media="screen">
+	/* <![CDATA[ */
+		input, textarea { font-size: 150%; font-family: monospace; }
+		input { width: 20em; }
+	/* ]]> */
+	</style>
+	
+</head>
+
+<body>
+
+	<h1>Enter a SPARQL query</h1>
+	
+	<p>
+		<textarea id="area" cols="40" rows="10"></textarea><br />
+		<label>Suggestions: <input id="suggestion" /></label>
+	</p>
+
+</body>
+</html>
