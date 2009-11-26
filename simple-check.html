@@ -11,6 +11,20 @@
 	<script type="text/javascript" src="lib/grammar.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
+		
+		var properties = {};
+		properties['foaf:name'] =  true;
+		properties['foaf:mbox'] =  true;
+		properties['rdfs:label'] =  true;
+		
+		var classes = {};
+		classes['foaf:Person'] =  true;
+		classes['foaf:Agent'] =  true;
+		classes['rdfs:Class'] =  true;
+		
+		sparql['predicate'][0] = properties;
+		sparql['klass'][0] = classes;
+		
 		var area = $('#area');
 		var suggest = $('#suggestion');
 		area.keydown(function(e) {
