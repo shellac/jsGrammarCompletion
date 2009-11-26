@@ -1,0 +1,43 @@
+var sparql = {
+    start: ( ( 'prefix', 'select', 'ask' ) ),
+    prefix: ( 'prefix', ('ns') ),
+    ns: ( '.*:', ('urip') ),
+    urip: ( '<.*>', ('prefix', 'select', 'ask') ),
+    select: ( 'select', ('distinct', 'svar', 'star') ),
+    ask: ( 'ask', ('body') ),
+    distinct: ( 'distinct', ('svar') ),
+    svar: ( '\\?.*', ('svar', 'block') ),
+    block: ( '{', ( 'body' ), '}' ),
+    body: ( ( 'bgp', 'optional', 'block' ) ),
+    bgp: ( 'bgp' ),
+    optional: ( 'optional', ('block') )
+}
+
+function parse(test) {
+    var tokens = tokenise(test);
+    var suggestions = suggest(tokens, sparql);
+}
+
+function tokenise(string) {
+    return string.split(/\s+/);
+}
+
+function suggest(tokens, grammar) {
+    var options = grammar['start'][0];
+    var token = tokens.shift();
+    run(token, tokens, grammar, options);
+}
+
+function run(token, tokens, grammar, options) {
+    var nextNode;
+    for (var i = 0; i < options.length; i++) {
+        var option = options[i];
+        var node = grammar[option];
+        if (match(token, node)) {
+            nextNode = node;
+            break;
+        }
+    }
+}
+
+parse('select ?foo { bgp }');
