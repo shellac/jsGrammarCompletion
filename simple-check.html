@@ -12,18 +12,13 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 		
-		var properties = {};
-		properties['foaf:name'] =  true;
-		properties['foaf:mbox'] =  true;
-		properties['rdfs:label'] =  true;
-		
-		var classes = {};
-		classes['foaf:Person'] =  true;
-		classes['foaf:Agent'] =  true;
-		classes['rdfs:Class'] =  true;
-		
-		//sparql['predicate'][0] = properties;
-		//sparql['klass'][0] = classes;
+		CONSTRAINED_PROPERTIES['foaf:name'] =  true;
+		CONSTRAINED_PROPERTIES['foaf:mbox'] =  true;
+		CONSTRAINED_PROPERTIES['rdfs:label'] =  true;
+
+		CONSTRAINED_CLASSES['foaf:Person'] =  true;
+		CONSTRAINED_CLASSES['foaf:Agent'] =  true;
+		CONSTRAINED_CLASSES['rdfs:Class'] =  true;
 		
 		var area = $('#area');
 		var suggest = $('#suggestion');
